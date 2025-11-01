@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>戰爭情境 - 玩家端</title>
     <link rel="stylesheet" href="style.css">
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
     apiKey: "AIzaSyBY5ah7DXc85-VrtNy4mXe7hwthNdwmWY4",
     authDomain: "war-game-extractor-e93ac.firebaseapp.com",
+    databaseURL: "https://war-game-extractor-e93ac-default-rtdb.firebaseio.com",
     projectId: "war-game-extractor-e93ac",
     storageBucket: "war-game-extractor-e93ac.firebasestorage.app",
     messagingSenderId: "96595621615",
@@ -22,9 +19,11 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
+  // host.js 需要的全域變數
+  const database = firebase.database();
 </script>
-    </head>
+</head>
 <body>
 
     <div class="screen active player-body">
@@ -50,4 +49,5 @@
 
     <script src="player.js"></script>
 </body>
+
 </html>
