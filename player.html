@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>戰爭情境 - 玩家端</title>
+    <link rel="stylesheet" href="style.css">
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBY5ah7DXc85-VrtNy4mXe7hwthNdwmWY4",
+    authDomain: "war-game-extractor-e93ac.firebaseapp.com",
+    projectId: "war-game-extractor-e93ac",
+    storageBucket: "war-game-extractor-e93ac.firebasestorage.app",
+    messagingSenderId: "96595621615",
+    appId: "1:96595621615:web:ee9fe57615e081d9a70d1a"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+    </head>
+<body>
+
+    <div class="screen active player-body">
+        
+        <h1 class="player-title">戰爭情境抽取器</h1>
+        <h2 class="player-subtitle">玩家遙控器</h2>
+
+        <div id="player-action-button" class="player-button">
+            <h2 id="player-button-text">連線中...</h2>
+        </div>
+
+        <p id="player-status-text" class="prompt-text">(正在與主機同步...)</p>
+
+        <div id="player-choice-container" class="button-group">
+            </div>
+
+        <div class="deck-status-container player-deck-status">
+            <p id="player-chance-empty" class="deck-status-warning" style="display:none;">機會牌庫已抽完</p>
+            <p id="player-fate-empty" class="deck-status-warning" style="display:none;">命運牌庫已抽完</p>
+        </div>
+
+    </div>
+
+    <script src="player.js"></script>
+</body>
+</html>
