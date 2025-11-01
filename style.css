@@ -27,7 +27,7 @@ Symbol", "Noto Color Emoji";
  
 /* --- 畫面切換 --- */
 .screen {
-   display: none; /* 預設隱藏 */
+   display: none; /* ★★★ 這是隱藏畫面的關鍵 ★★★ */
    width: 100%;
    max-width: 500px;
    text-align: center;
@@ -55,7 +55,7 @@ hr {
    margin: 1.5rem 0;
 }
  
-/* 【★新增 ★】首頁重置按鈕樣式 */
+/* 首頁重置按鈕樣式 */
 .btn-home-reset {
    position: absolute;
    top: 0;
@@ -65,7 +65,7 @@ hr {
    padding: 0.6rem 0.8rem;
 }
  
-/* 【★新增 ★】牌庫為空提示樣式 */
+/* 牌庫為空提示樣式 */
 .deck-status-container {
    margin-top: 1.5rem;
 }
@@ -93,7 +93,7 @@ hr {
 .draw-button-container h2 {
    font-size: 3.5rem; /* 按鈕上超大字體 */
    color: white;
-   margin: 0;
+  Tmargin: 0;
    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
  
@@ -125,7 +125,7 @@ hr {
 @keyframes spin {
    to { transform: rotate(360deg); }
 }
- 
+
 /* --- 畫面三：結果 --- */
 #result-content {
    background-color: #444;
@@ -135,7 +135,6 @@ hr {
    margin-bottom: 2rem;
 }
  
-/* 【★已修改 ★】放大 "你抽到了..." */
 #result-content h3 {
    font-size: 1.5rem; 
    color: #ffc107;
@@ -146,7 +145,6 @@ hr {
    margin-bottom: 1rem;
 }
  
-/* 【★已修改 ★】放大 "情境：" 和 "效果：" */
 #result-content h4 {
    font-size: 1.4rem; 
    color: #ffc107;
@@ -154,7 +152,6 @@ hr {
    margin-top: 1.5rem;
 }
  
-/* 【★已修改 ★】放大 "情境內容" */
 #result-content .event-description {
    font-size: 1.5rem; 
    line-height: 1.6;
@@ -195,7 +192,7 @@ hr {
    font-weight: bold;
    color: white;
    border: none;
-   border-radius: 10px;
+  Tborder-radius: 10px;
    padding: 1rem;
    cursor: pointer;
    transition: background-color 0.2s, transform 0.1s;
