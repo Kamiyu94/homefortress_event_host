@@ -43,104 +43,102 @@ document.addEventListener('DOMContentLoaded',
                    .replace(/(交出|支付)\s*「(.*?)」/g, '<span class="text-red">$1「<span class="text-blue-bold">$2</span>」</span>');
     };
     let cardData = {
-        chance: [
-            // --- 原始 7 張 ---
-            { id: 'C1', title: '政府物資配給', description: '國軍/區公所冒險運來一批物資，你們幸運地領到了。', type: 'outcome', effect: '獲得「水 +10L」與「米 +5kg」。' },
-            { id: 'C2', title: '醫療資源抵達', description: '無國界醫生或友軍醫療團設立了臨時醫療站。', type: 'outcome', effect: '全組 健康點數 +6。若有特殊身份者，該成員額外 +3 點。' },
-            { id: 'C3', title: '幸運的發現', description: '你在巡視時，發現一間被遺棄的雜貨店還剩下一些有用的東西。', type: 'outcome', effect: '獲得「罐頭 x5」與「照明設備 x1」。' },
-            { id: 'C4', title: '可靠的情報', description: '你的收音機接收到友軍的安全廣播，提振了士氣。', type: 'outcome', effect: '全組 健康點數 +3。(若無收音機則無效)' },
-            { id: 'C5', title: '意外的潔淨水源', description: '你發現一處未受污染的隱藏水源（例如：未被發現的井）。', type: 'outcome', effect: '獲得「水 +20L」若有濾水器，則「水 +30L」。' },
-            { id: 'C6', title: '物資腐敗 (陷阱)', description: '你打開一箱存糧，發現因為儲存不當，已經全部腐敗發霉。', type: 'outcome', effect: '損失 20% 的食物。' },
-            { id: 'C7', title: '假情報 (陷阱)', description: '你們聽到假消息，以為有空投物資，冒險外出卻一無所獲。', type: 'outcome', effect: '全組 健康點數 -3。並額外 損失「水 -1L」與「乾糧 -1包」。' },
-            
-            // --- 原始 7 張 (來自上次更新) ---
-            { id: 'C8', title: '鄰居的善意', description: '一位友善的鄰居與你分享了多餘的物資。', type: 'outcome', effect: '獲得「醫療包 x1」與「水 x5L」。' },
-            // 【★ 修正 #3 ★】
-            { id: 'C9', title: '搜到醫療箱', description: '你在廢棄的車輛中找到一個完整的醫療箱。', type: 'outcome', effect: '獲得「醫療包 x1」、「消毒用品(酒精) x4L」與「水 x5L」。' },
-            { id: 'C10', title: '衛生用品補給', description: '人道組織空投了一批衛生用品，你撿到了包裹。', type: 'outcome', effect: '獲得「水 x2L」與「醫療包 x1」。' },
-            { id: 'C11', title: '臨時通訊站', description: '友軍架設了臨時通訊站，你成功聯絡上家人報平安。', type: 'outcome', effect: '全組 健康點數 +3。若有無線電則全組 健康點數 +6' },
-            { id: 'C12', title: '能源補給', description: '你找到一包未開封的物資。', type: 'outcome', effect: '獲得「米 x10kg」與「照明設備 x1」。' },
-            { id: 'C13', title: '發現嬰兒用品 (陷阱)', description: '你發現了一批「嬰兒用品」，但這是個陷阱，你觸發了警報並倉皇逃離。', type: 'outcome', effect: '全組 健康點數 -2 (因驚嚇)。' },
-            { id: 'C14', title: '乾淨的衣物', description: '你找到一個被遺棄的行李箱，裡面有乾淨的衣物可供更換。', type: 'outcome', effect: '全組 健康點數 +2 (士氣提升)。' },
-            
-            // --- 新增選擇題 ---
-            // 【★ 修正 #1 ★】
-            { id: 'C15', title: '受困的商人', description: '你發現一名商人被壓在貨物下。你聽到了遠處有威脅... ', type: 'choice',
-                choices: [
-                    { text: '花時間救他 (需 1x 醫療包)', effect: '交出「醫療包 x1」。商人感謝你，並給了你「現金 2萬」。(若無醫療包則無法選擇)' },
-                    { text: '快速搜刮他的貨物', effect: '獲得「罐頭 x3」。全組 健康點數 -2 (因良心不安)。' }
-                ]
-            },
-            { id: 'C16', title: '破損的管線', description: '你發現一條微弱流出乾淨水源的水管，但修復它需要工具。', type: 'choice',
-                choices: [
-                    { text: '使用工具修理 (需 1x 工具組)', effect: '你修復了它。獲得「水 +20L」。(若無工具組則無法選擇)' },
-                    { text: '直接取水', effect: '你只能接到「水 +3L」，且水管完全損毀。' }
-                ]
-            },
-        ],
-        fate: [
-            // --- 原始 8 張 ---
-            { id: 'F1', title: '第五縱隊襲擊', description: '合作者對你們的住所發動攻擊，雖然被擊退，但造成了損失。', type: 'outcome', effect: '全組 健康點數 -6。並 損失「30% 的水與糧食」。' },
-            { id: 'F2', title: '鄰居搶食', description: '斷糧的鄰居破門而入，在混亂中搶走了你們的食物。', type: 'outcome', effect: '損失「米 x5kg」與「罐頭 x10」。(若有「防衛性武器」，則無損失)。' },
-            { id: 'F3', title: '第五縱隊縱火', description: '附近發生縱火，濃煙與恐慌造成了嚴重壓力。', type: 'outcome', effect: '全組 健康點數 -3。' },
-            { id: 'F4', title: '衛生危機', description: '由於廢棄物處理不當，組內爆發了傳染病。', type: 'outcome', effect: '全組 健康點數 -6。(若有準備「酒精/消毒用品」，則改為 -2 點)。' },
-            { id: 'F5', title: '精神崩潰', description: '長期的壓力下，一名成員精神狀況不穩，歇斯底里地破壞了物品。', type: 'outcome', effect: '損失「糧食」一天人份。全組 健康點數 -3。(若有準備「無電娛樂用品」，可豁免)。' },
-            { id: 'F6', title: '意外的轉折', description: '敵軍的空襲剛好炸開了附近無人銀行的金庫，你冒險撿到一些可用物資。', type: 'outcome', effect: '獲得「現金 10 萬」。' },
-            { id: 'F7', title: '絕望的求助者', description: '一位帶著嬰兒的母親敲門，乞求你們給她一些食物與水。', type: 'choice',
-                choices: [
-                    { text: '幫助她', effect: '交出「七天一人份的糧食與水」。全組 健康點數 -2 (因失去物資的焦慮)。' },
-                    { text: '拒絕她', effect: '全組 健康點數 -6 (因巨大的心理壓力與罪惡感)。' }
-                ]
-            },
-            { id: 'F8', title: '黑市商人', description: '一個黑市商人路過，他願意交換物資，但只收現金。', type: 'choice',
-                choices: [
-                    { text: '交易 (需有現金)', effect: '支付「20,000 現金」。換取「四個人一週的糧食與水」或「其他想要的物品」。(若無現金則無法交易)' },
-                    { text: '拒絕交易', effect: '沒有任何變化。' }
-                ]
-            },
-            
-            // --- 原始 8 張 (來自上次更新) ---
-            { id: 'F9', title: '傳染病發作', description: '組內一名成員的傳染病發作，急需藥物。', type: 'outcome', effect: '損失「醫療包 x2」。(若無藥物，全組 健康點數 -6)' },
-            { id: 'F10', title: '寵物/嬰兒生病', description: '家中的寵物或嬰兒生病了，需要額外照顧。', type: 'outcome', effect: '全組 健康點數 -3 (因焦慮)。並額外 損失「乾淨的水 1L」。' },
-            // 【★ 修正 #4 ★】
-            { id: 'F11', title: '幫派索取保護費', description: '當地幫派前來索取保護費。', type: 'choice', 
-                choices: [ 
-                    { text: '支付物資', effect: '交出「現金 x10,000」。幫派這週不會找你麻煩。' }, 
-                    { text: '拒絕支付', effect: '你拒絕了。全組 健康點數 -3 (因恐懼)，若有防衛性武器則無損失。' } 
-                ] 
-            },
-            { id: 'F12', title: '飲用水污染', description: '你儲存的一批飲用水因容器破裂而受到污染。', type: 'outcome', effect: '損失「飲用水 5L」。(若有「濾水器」，則損失2L)。' },
-            { id: 'F13', title: '衛生用品短缺', description: '組內的女性成員生理期來了，但衛生用品不足。', type: 'outcome', effect: '全組 健康點數 -2 (因不適與壓力)。(若有準備「女性生理用品或醫療包」，可豁免)。' },
-            // 【★ 修正 #2 ★】
-            { id: 'F14', title: '嚴重外傷', description: '一名成員在偵查時不慎受了重傷，血流不止。', type: 'choice', 
-                choices: [ 
-                    { text: '使用醫療包', effect: '消耗「醫療包 x1」。' }, 
-                    { text: '簡易處理', effect: '全組 健康點數 -6 (因感染風險)。' } 
-                ] 
-            },
-            { id: 'F15', title: '絕望的士兵', description: '一名崩潰的逃兵闖入，要求你交出所有食物。', type: 'choice', 
-                choices: [ 
-                    { text: '交出食物', effect: '損失「30% 的糧食」。' }, 
-                    { text: '武力對抗', effect: '全組 健康點數 -3。 (若有「防衛性武器」，則改為 獲得「糧食 x1包」)。' } 
-                ] 
-            },
-            { id: 'F16', title: '失去光明', description: '你最後的照明設備壞了，暴露出安全風險。', type: 'outcome', effect: '損失「照明設備 x1」。(若無照明設備，全組 健康點數 -3)。' },
-
-            // --- 新增選擇題 ---
-            { id: 'F17', title: '可疑的空投', description: '你看到一個空投物資箱降落在附近，但那裡看起來很空曠。', type: 'choice',
-                choices: [
-                    { text: '攜帶武器前往 (需 防衛性武器)', effect: '你遭遇了埋伏，但在抵抗後成功帶走物資。獲得「四人份糧食 x1週份」。全組 健康點數 -3 (因戰鬥)。(若無武器無法選擇)' },
-                    { text: '直接衝過去', effect: '這是個陷阱！你被搶走了物資並受了傷。損失「一週一人份糧食」。全組 健康點數 -6。' }
-                ]
-            },
-            { id: 'F18', title: '封鎖區檢查站', description: '你必須通過一個由武裝人員控制的檢查站。', type: 'choice',
-                choices: [
-                    { text: '賄賂守衛 (需 10,000 現金)', effect: '支付「10,000 現金」。他們讓你通過了。(若無現金無法選擇)' },
-                    { text: '試圖蒙混', effect: '你被識破並被粗暴對待。損失「米 x1kg」。全組 健康點數 -3。' }
-                ]
-            },
-        ]
-    };
+        chance: [
+              // --- 原始 7 張 ---
+              { id: 'C1', title: '政府物資配給', description: '國軍/區公所冒險運來一批物資，你們幸運地領到了。', type: 'outcome', effect: '獲得「水 +10L」與「米 +5kg」。' },
+              { id: 'C2', title: '醫療資源抵達', description: '無國界醫生或友軍醫療團設立了臨時醫療站。', type: 'outcome', effect: '全組健康點數 +6。若有特殊身份者，該成員額外 +3 點。' },
+              { id: 'C3', title: '幸運的發現', description: '你在巡視時，發現一間被遺棄的雜貨店還剩下一些有用的東西。', type: 'outcome', effect: '獲得「罐頭 x5」與「照明設備 x1」。' },
+              { id: 'C4', title: '可靠的情報', description: '你的收音機接收到友軍的安全廣播，提振了士氣。', type: 'outcome', effect: '全組健康點數 +3。(若無收音機則無效)' },
+              { id: 'C5', title: '意外的潔淨水源', description: '你發現一處未受污染的隱藏水源（例如：未被發現的井）。', type: 'outcome', effect: '獲得「水 +20L」若有濾水器，則「水 +30L」。' },
+              { id: 'C6', title: '物資腐敗 (陷阱)', description: '你打開一箱存糧，發現因為儲存不當，已經全部腐敗發霉。', type: 'outcome', effect: '損失 20% 的食物。' },
+              { id: 'C7', title: '假情報 (陷阱)', description: '你們聽到假消息，以為有空投物資，冒險外出卻一無所獲。', type: 'outcome', effect: '全組健康點數 -3。並額外 損失「水 -1L」與「乾糧 -1包」。' },
+              
+              // --- 原始 7 張 (來自上次更新) ---
+              { id: 'C8', title: '鄰居的善意', description: '一位友善的鄰居與你分享了多餘的物資。', type: 'outcome', effect: '獲得「醫療包 x1」與「水 x5L」。' },
+              { id: 'C9', title: '搜到醫療箱', description: '你在廢棄的車輛中找到一個完整的醫療箱。', type: 'outcome', effect: '獲得「醫療包 x1」、「消毒用品(酒精) x4L」與「水 x5L」。' },
+              { id: 'C10', title: '衛生用品補給', description: '人道組織空投了一批衛生用品，你撿到了包裹。', type: 'outcome', effect: '獲得「水 x2L」與「醫療包 x1」。' },
+M: 'C11', title: '臨時通訊站', description: '友軍架設了臨時通訊站，你成功聯絡上家人報平安。', type: 'outcome', effect: '全組健康點數 +3。若有無線電則全組 健康點數 +6' },
+              { id: 'C12', title: '能源補給', description: '你找到一包未開封的物資。', type: 'outcome', effect: '獲得「米 x10kg」與「照明設備 x1」。' },
+              { id: 'C13', title: '發現嬰兒用品 (陷阱)', description: '你發現了一批「嬰兒用品」，但這是個陷阱，你觸發了警報並倉皇逃離。', type: 'outcome', effect: '全組健康點數 -2 (因驚嚇)。' },
+              { id: 'C14', title: '乾淨的衣物', description: '你找到一個被遺棄的行李箱，裡面有乾淨的衣物可供更換。', type: 'outcome', effect: '全組健康點數 +2 (士氣提升)。' },
+              
+              // --- 新增選擇題 ---
+              { id: 'C15', title: '受困的商人', description: '你發現一名商人被壓在貨物下。你聽到了遠處有威脅... ', type: 'choice',
+                  choices: [
+                      { text: '花時間救他 (需 1x 醫療包)', effect: '交出「醫療包 x1」。商人感謝你，並給了你「現金 2萬」。(若無醫療包則無法選擇)' },
+                      { text: '快速搜刮他的貨物', effect: '獲得「罐頭 x3」。全組 健康點數 -2 (因良心不安)。' }
+                  ]
+              },
+              { id: 'C16', title: '破損的管線', description: '你發現一條微弱流出乾淨水源的水管，但修復它需要工具。', type: 'choice',
+                  choices: [
+                      { text: '使用工具修理 (需 1x 工具組)', effect: '你修復了它。獲得「水 +20L」。(若無工具組則無法選擇)' },
+                      { text: '直接取水', effect: '你只能接到「水 +3L」，且水管完全損毀。' }
+                  ]
+              },
+        ],
+        fate: [
+              // --- 原始 8 張 ---
+              { id: 'F1', title: '第五縱隊襲擊', description: '合作者對你們的住所發動攻擊，雖然被擊退，但造成了損失。', type: 'outcome', effect: '全組健康點數 -6。並 損失「30% 的水與糧食」。' },
+              { id: 'F2', title: '鄰居搶食', description: '斷糧的鄰居破門而入，在混亂中搶走了你們的食物。', type: 'outcome', effect: '損失「米 x5kg」與「罐頭 x10」。(若有「防衛性武器」，則無損失)。' },
+              { id: 'F3', title: '第五縱隊縱火', description: '附近發生縱火，濃煙與恐慌造成了嚴重壓力。', type: 'outcome', effect: '全組健康點數 -3。' },
+              { id: 'F4', title: '衛生危機', description: '由於廢棄物處理不當，組內爆發了傳染病。', type: 'outcome', effect: '全組健康點數 -6。(若有準備「酒精/消毒用品」，則改為 -2 點)。' },
+              { id: 'F5', title: '精神崩潰', description: '長期的壓力下，一名成員精神狀況不穩，歇斯底里地破壞了物品。', type: 'outcome', effect: '損失「糧食」一天人份。全組健康點數 -3。(若有準備「無電娛樂用品」，可豁免)。' },
+              { id: 'F6', title: '意外的轉折', description: '敵軍的空襲剛好炸開了附近無人銀行的金庫，你冒險撿到一些可用物資。', type: 'outcome', effect: '獲得「現金 10 萬」。' },
+              { id: 'F7', title: '絕望的求助者', description: '一位帶著嬰兒的母親敲門，乞求你們給她一些食物與水。', type: 'choice',
+                  choices: [
+                      { text: '幫助她', effect: '交出「七天一人份的糧食與水」。全組 健康點數 -2 (因失去物資的焦慮)。' },
+                      { text: '拒絕她', effect: '全組 健康點數 -6 (因巨大的心理壓力與罪惡感)。' }
+                  ]
+              },
+              { id: 'F8', title: '黑市商人', description: '一個黑市商人路過，他願意交換物資，但只收現金。', type: 'choice',
+                  choices: [
+                      { text: '交易 (需有現金)', effect: '支付「20,000 現金」。換取「四個人一週的糧食與水」或「其他想要的物品」。(若無現金則無法交易)' },
+                      { text: '拒絕交易', effect: '沒有任何變化。' }
+                  ]
+              },
+              
+              // --- 原始 8 張 (來自上次更新) ---
+              { id: 'F9', title: '傳染病發作', description: '組內一名成員的傳染病發作，急需藥物。', type: 'outcome', effect: '損失「醫療包 x2」。(若無藥物，全組 健康點數 -6)' },
+              { id: 'F10', title: '寵物/嬰兒生病', description: '家中的寵物或嬰兒生病了，需要額外照顧。', type: 'outcome', effect: '全組 健康點數 -3 (因焦慮)。並額外 損失「乾淨的水 1L」。' },
+              { id: 'F11', title: '幫派索取保護費', description: '當地幫派前來索取保護費。', type: 'choice', 
+                  choices: [ 
+                      { text: '支付物資', effect: '交出「現金 x10,000」。幫派這週不會找你麻煩。' }, 
+                      { text: '拒絕支付', effect: '你拒絕了。全組 健康點數 -3 (因恐懼)，若有防衛性武器則無損失。' } 
+                  ] 
+              },
+              { id: 'F12', title: '飲用水污染', description: '你儲存的一批飲用水因容器破裂而受到污染。', type: 'outcome', effect: '損失「飲用水 5L」。(若有「濾水器」，則損失2L)。' },
+              // ★ 修正：移除 "D:"
+              { id: 'F13', title: '衛生用品短缺', description: '組內的女性成員生理期來了，但衛生用品不足。', type: 'outcome', effect: '全組健康點數 -2 (因不適與壓力)。(若有準備「女性生理用品或醫療包」，可豁免)。' },
+              { id: 'F14', title: '嚴重外傷', description: '一名成員在偵查時不慎受了重傷，血流不止。', type: 'choice', 
+                  choices: [ 
+                      { text: '使用醫療包', effect: '消耗「醫療包 x1」。' }, 
+                      { text: '簡易處理', effect: '全組 健康點數 -6 (因感染風險)。' } 
+                  ] 
+              },
+              { id: 'F15', title: '絕望的士兵', description: '一名崩潰的逃兵闖入，要求你交出所有食物。', type: 'choice', 
+                  choices: [ 
+                      { text: '交出食物', effect: '損失「30% 的糧食」。' }, 
+                      { text: '武力對抗', effect: '全組 健康點數 -3。 (若有「防衛性武器」，則改為獲得「糧食 x1包」)。' } 
+              _   ] 
+              },
+              { id: 'F16', title: '失去光明', description: '你最後的照明設備壞了，暴露出安全風險。', type: 'outcome', effect: '損失「照明設備 x1」。(若無照明設備，全組 健康點數 -3)。' },
+ 
+              // --- 新增選擇題 ---
+              // ★ 修正：移除 "_"
+              { id: 'F17', title: '可疑的空投', description: '你看到一個空投物資箱降落在附近，但那裡看起來很空曠。', type: 'choice',
+                  choices: [
+                      { text: '攜帶武器前往 (需 防衛性武器)', effect: '你遭遇了埋伏，但在抵抗後成功帶走物資。獲得「四人份糧食 x1週份」。全組 健康點數 -3 (因戰鬥)。(若無武器無法選擇)' },
+                      { text: '直接衝過去', effect: '這是個陷阱！你被搶走了物資並受了傷。損失「一週一人份糧食」。全組 健康點數 -6。' }
+                  ]
+              },
+              { id: 'F18', title: '封鎖區檢查站', description: '你必須通過一個由武裝人員控制的檢查站。', type: 'choice',
+                  choices: [
+            _       { text: '賄賂守衛 (需 10,000 現金)', effect: '支付「10,000 現金」。他們讓你通過了。(若無現金無法選擇)' },
+                      { text: '試圖蒙混', effect: '你被識破並被粗暴對待。損失「米 x1kg」。全組 健康點數 -3。' }
+                  ]
+              },
+        ]
+    };
         
     // --- 3. 牌庫狀態 ---
     let mainDecks = {};
@@ -570,3 +568,4 @@ document.addEventListener('DOMContentLoaded',
 
 
 });
+
